@@ -1,0 +1,28 @@
+import kotlin.test.Test
+import kotlin.test.assertEquals
+
+class Day{day}Test {
+    private val example = """
+
+    """.trimIndent()
+
+    @Test
+    fun part1Example() {
+        assertEquals("", day{day}Part1(example))
+    }
+
+    @Test
+    fun part1Input() {
+        assertEquals("", day{day}Part1(readInputFile({day})))
+    }
+
+    @Test
+    fun part2Example() {
+        assertEquals("", day{day}Part2(example))
+    }
+
+    @Test
+    fun part2Input() {
+        assertEquals("", day{day}Part2(readInputFile({day})))
+    }
+}

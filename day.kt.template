@@ -1,0 +1,7 @@
+fun day{day}Part1(input: String): String {
+    return ""
+}
+
+fun day{day}Part2(input: String): String {
+    return ""
+}
