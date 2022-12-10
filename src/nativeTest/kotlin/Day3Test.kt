@@ -12,14 +12,6 @@ class Day3Test {
     """.trimIndent()
 
     @Test
-    fun score() {
-        assertEquals(1, 'a'.priority())
-        assertEquals(26, 'z'.priority())
-        assertEquals(27, 'A'.priority())
-        assertEquals(52, 'Z'.priority())
-    }
-
-    @Test
     fun part1Example() {
         assertEquals("157", day3Part1(example))
     }
