@@ -9,7 +9,7 @@ private data class Point(val x: Int, val y: Int) {
         val distance = other.distanceTo(this)
 
         return if (abs(distance.x) == 2 || abs(distance.y) == 2) {
-            this.move(Distance(x = distance.x.coerceIn(-1..1), distance.y.coerceIn(-1..1)))
+            this.move(Distance(x = distance.x.coerceIn(-1..1), y = distance.y.coerceIn(-1..1)))
         } else {
             this
         }
@@ -31,8 +31,8 @@ private fun parseDirection(char: Char): Distance {
 fun day9Part1(input: String): String {
     val visited = mutableSetOf(Point(0, 0))
 
-    var head = Point(0, 0)
-    var tail = Point(0, 0)
+    var head = Point(x = 0, y = 0)
+    var tail = Point(x = 0, y = 0)
 
     for (line in input.lines()) {
         val directionDistance = parseDirection(line[0])
@@ -50,10 +50,10 @@ fun day9Part1(input: String): String {
 }
 
 fun day9Part2(input: String): String {
-    val visited = mutableSetOf(Point(0, 0))
+    val visited = mutableSetOf(Point(x = 0, y = 0))
 
-    var head = Point(0, 0)
-    val tails = (0 until 9).map { Point(0, 0) }.toMutableList()
+    var head = Point(x = 0, y = 0)
+    val tails = (0 until 9).map { Point(x = 0, y = 0) }.toMutableList()
 
     for (line in input.lines()) {
         val directionDistance = parseDirection(line[0])
