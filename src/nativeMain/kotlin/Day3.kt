@@ -1,4 +1,4 @@
-fun Char.priority(): Int {
+private fun Char.priority(): Int {
     return when (this) {
         in ('a'..'z') -> code - 'a'.code + 1
         in ('A'..'Z') -> code - 'A'.code + 27
@@ -6,7 +6,7 @@ fun Char.priority(): Int {
     }
 }
 
-fun findDuplicate(a: List<Char>, b: List<Char>): Char? {
+private fun findDuplicate(a: List<Char>, b: List<Char>): Char? {
     return a.find { b.contains(it) }
 }
 
@@ -18,7 +18,7 @@ fun day3Part1(input: String): String {
         .toString()
 }
 
-fun findDuplicate(a: List<Char>, vararg b: List<Char>): Char? {
+private fun findDuplicate(a: List<Char>, vararg b: List<Char>): Char? {
     return a.find { item -> b.all { it.contains(item) } }
 }
 

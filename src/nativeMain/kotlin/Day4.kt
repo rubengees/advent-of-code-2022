@@ -1,4 +1,4 @@
-fun parseLine(line: String): Pair<IntRange, IntRange> {
+private fun parseLine(line: String): Pair<IntRange, IntRange> {
     val ranges = line.split(",")
         .map { range -> range.split("-").map { it.toInt() } }
         .map { IntRange(it[0], it[1]) }

@@ -1,6 +1,6 @@
-data class File(val name: String, val size: Int)
+private data class File(val name: String, val size: Int)
 
-data class Dir(
+private data class Dir(
     val name: String,
     val parent: Dir? = null
 ) {
@@ -33,9 +33,9 @@ data class Dir(
     }
 }
 
-val FILE_REGEX = Regex("^(\\d+) (.*)$")
+private val FILE_REGEX = Regex("^(\\d+) (.*)$")
 
-fun parse(input: String): Dir {
+private fun parse(input: String): Dir {
     val root = Dir("/")
     var current = root
 

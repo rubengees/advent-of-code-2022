@@ -1,6 +1,6 @@
-data class Instruction(val times: Int, val from: Int, val to: Int)
+private data class Instruction(val times: Int, val from: Int, val to: Int)
 
-fun parseInput(input: String): Pair<MutableList<ArrayDeque<Char>>, List<Instruction>> {
+private fun parseInput(input: String): Pair<MutableList<ArrayDeque<Char>>, List<Instruction>> {
     val stackLines = input.lines().takeWhile { !it.startsWith(" 1 ") }
 
     val stackLineChars = stackLines.map { line ->

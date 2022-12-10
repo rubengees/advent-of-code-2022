@@ -1,6 +1,6 @@
-val winTable = mapOf(1 to 3, 2 to 1, 3 to 2)
+private val winTable = mapOf(1 to 3, 2 to 1, 3 to 2)
 
-fun calculateScorePart1(left: Char, right: Char): Int {
+private fun calculateScorePart1(left: Char, right: Char): Int {
     val leftCode = left.code - 'A'.code + 1
     val rightCode = right.code - 'X'.code + 1
 
@@ -21,9 +21,9 @@ fun day2Part1(input: String): String {
         .toString()
 }
 
-val reverseWinTable = winTable.entries.associateBy({ it.value }) { it.key }
+private val reverseWinTable = winTable.entries.associateBy({ it.value }) { it.key }
 
-fun calculateScorePart2(left: Char, right: Char): Int {
+private fun calculateScorePart2(left: Char, right: Char): Int {
     val leftCode = left.code - 'A'.code + 1
 
     return when (right) {
