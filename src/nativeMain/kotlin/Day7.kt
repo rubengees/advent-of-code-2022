@@ -33,7 +33,7 @@ private data class Dir(
     }
 }
 
-private val FILE_REGEX = Regex("^(\\d+) (.*)$")
+private val fileRegex = Regex("^(\\d+) (.*)$")
 
 private fun parse(input: String): Dir {
     val root = Dir("/")
@@ -50,8 +50,8 @@ private fun parse(input: String): Dir {
             current = current.subDir(line.substring(5))
         } else if (line.startsWith("dir")) {
             current.addDir(line.substring(4))
-        } else if (line.matches(FILE_REGEX)) {
-            val match = FILE_REGEX.matchEntire(line) ?: error("Line did not match regex")
+        } else if (line.matches(fileRegex)) {
+            val match = fileRegex.matchEntire(line) ?: error("Line did not match regex")
             val size = match.groupValues[1].toInt()
             val name = match.groupValues[2]
 
