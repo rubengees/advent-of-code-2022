@@ -83,9 +83,6 @@ fabric.properties
 
 .idea/*
 
-!.idea/codeStyles
-!.idea/runConfigurations
-
 ### Gradle ###
 .gradle
 **/build/
