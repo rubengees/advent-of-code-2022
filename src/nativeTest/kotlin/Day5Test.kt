@@ -2,6 +2,8 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class Day5Test {
+    private val day = Day5()
+
     private val example = """
             [D]    
         [N] [C]    
@@ -16,21 +18,21 @@ class Day5Test {
 
     @Test
     fun part1Example() {
-        assertEquals("CMZ", day5Part1(example))
+        assertEquals("CMZ", day.part1(example))
     }
 
     @Test
     fun part1Input() {
-        assertEquals("VGBBJCRMN", day5Part1(readInputFile(5)))
+        assertEquals("VGBBJCRMN", day.part1(readInputFile(5)))
     }
 
     @Test
     fun part2Example() {
-        assertEquals("MCD", day5Part2(example))
+        assertEquals("MCD", day.part2(example))
     }
 
     @Test
     fun part2Input() {
-        assertEquals("LBBVJBRMH", day5Part2(readInputFile(5)))
+        assertEquals("LBBVJBRMH", day.part2(readInputFile(5)))
     }
 }

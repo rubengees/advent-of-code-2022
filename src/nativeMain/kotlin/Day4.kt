@@ -1,21 +1,23 @@
-private fun parseLine(line: String): Pair<IntRange, IntRange> {
-    val ranges = line.split(",")
-        .map { range -> range.split("-").map { it.toInt() } }
-        .map { IntRange(it[0], it[1]) }
+class Day4 {
+    private fun parseLine(line: String): Pair<IntRange, IntRange> {
+        val ranges = line.split(",")
+            .map { range -> range.split("-").map { it.toInt() } }
+            .map { IntRange(it[0], it[1]) }
 
-    return ranges[0] to ranges[1]
-}
+        return ranges[0] to ranges[1]
+    }
 
-fun day4Part1(input: String): String {
-    return input.lines()
-        .map { parseLine(it) }
-        .count { (a, b) -> a.intersect(b).size in listOf(a.toList().size, b.toList().size) }
-        .toString()
-}
+    fun part1(input: String): String {
+        return input.lines()
+            .map { parseLine(it) }
+            .count { (a, b) -> a.intersect(b).size in listOf(a.toList().size, b.toList().size) }
+            .toString()
+    }
 
-fun day4Part2(input: String): String {
-    return input.lines()
-        .map { parseLine(it) }
-        .count { (a, b) -> a.intersect(b).isNotEmpty() }
-        .toString()
+    fun part2(input: String): String {
+        return input.lines()
+            .map { parseLine(it) }
+            .count { (a, b) -> a.intersect(b).isNotEmpty() }
+            .toString()
+    }
 }

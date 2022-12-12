@@ -3,6 +3,8 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class Day11Test {
+    private val day = Day11()
+
     private val example = """
         Monkey 0:
           Starting items: 79, 98
@@ -35,21 +37,21 @@ class Day11Test {
 
     @Test
     fun part1Example() {
-        assertEquals("10605", day11Part1(example))
+        assertEquals("10605", day.part1(example))
     }
 
     @Test
     fun part1Input() {
-        assertEquals("120056", day11Part1(readInputFile(11)))
+        assertEquals("120056", day.part1(readInputFile(11)))
     }
 
     @Test
     fun part2Example() {
-        assertEquals("2713310158", day11Part2(example))
+        assertEquals("2713310158", day.part2(example))
     }
 
     @Test
     fun part2Input() {
-        assertEquals("21816744824", day11Part2(readInputFile(11)))
+        assertEquals("21816744824", day.part2(readInputFile(11)))
     }
 }

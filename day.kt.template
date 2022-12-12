@@ -1,7 +1,9 @@
-fun day{day}Part1(input: String): String {
-    return ""
-}
+class Day{day} {
+    fun part1(input: String): String {
+        return ""
+    }
 
-fun day{day}Part2(input: String): String {
-    return ""
+    fun part2(input: String): String {
+        return ""
+    }
 }

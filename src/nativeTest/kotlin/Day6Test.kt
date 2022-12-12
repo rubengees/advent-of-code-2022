@@ -2,6 +2,8 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class Day6Test {
+    private val day = Day6()
+
     private val examplesPart1 = mapOf(
         "mjqjpqmgbljsphdztnvjfqwrcgsmlb" to "7",
         "bvwbjplbgvbhsrlpgdmjqwftvncz" to "5",
@@ -21,24 +23,24 @@ class Day6Test {
     @Test
     fun part1Example() {
         for ((input, expectedOutput) in examplesPart1) {
-            assertEquals(expectedOutput, day6Part1(input))
+            assertEquals(expectedOutput, day.part1(input))
         }
     }
 
     @Test
     fun part1Input() {
-        assertEquals("1965", day6Part1(readInputFile(6)))
+        assertEquals("1965", day.part1(readInputFile(6)))
     }
 
     @Test
     fun part2Example() {
         for ((input, expectedOutput) in examplesPart2) {
-            assertEquals(expectedOutput, day6Part2(input))
+            assertEquals(expectedOutput, day.part2(input))
         }
     }
 
     @Test
     fun part2Input() {
-        assertEquals("2773", day6Part2(readInputFile(6)))
+        assertEquals("2773", day.part2(readInputFile(6)))
     }
 }

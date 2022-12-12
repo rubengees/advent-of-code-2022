@@ -2,6 +2,8 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class Day4Test {
+    private val day = Day4()
+
     private val example = """
         2-4,6-8
         2-3,4-5
@@ -13,21 +15,21 @@ class Day4Test {
 
     @Test
     fun part1Example() {
-        assertEquals("2", day4Part1(example))
+        assertEquals("2", day.part1(example))
     }
 
     @Test
     fun part1Input() {
-        assertEquals("500", day4Part1(readInputFile(4)))
+        assertEquals("500", day.part1(readInputFile(4)))
     }
 
     @Test
     fun part2Example() {
-        assertEquals("4", day4Part2(example))
+        assertEquals("4", day.part2(example))
     }
 
     @Test
     fun part2Input() {
-        assertEquals("815", day4Part2(readInputFile(4)))
+        assertEquals("815", day.part2(readInputFile(4)))
     }
 }

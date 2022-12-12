@@ -2,6 +2,8 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class Day9Test {
+    private val day = Day9()
+
     private val example = """
         R 4
         U 4
@@ -26,26 +28,26 @@ class Day9Test {
 
     @Test
     fun part1Example() {
-        assertEquals("13", day9Part1(example))
+        assertEquals("13", day.part1(example))
     }
 
     @Test
     fun part1Input() {
-        assertEquals("6271", day9Part1(readInputFile(9)))
+        assertEquals("6271", day.part1(readInputFile(9)))
     }
 
     @Test
     fun part2Example() {
-        assertEquals("1", day9Part2(example))
+        assertEquals("1", day.part2(example))
     }
 
     @Test
     fun part2ExampleLarge() {
-        assertEquals("36", day9Part2(exampleLarge))
+        assertEquals("36", day.part2(exampleLarge))
     }
 
     @Test
     fun part2Input() {
-        assertEquals("2458", day9Part2(readInputFile(9)))
+        assertEquals("2458", day.part2(readInputFile(9)))
     }
 }
