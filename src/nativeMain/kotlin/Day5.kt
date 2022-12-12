@@ -22,7 +22,6 @@ class Day5 {
             acc
         }
 
-
         val instructionLines = input.lines().drop(stackLines.size + 2)
 
         val instructions = instructionLines.map { line ->

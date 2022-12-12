@@ -4,7 +4,7 @@ class Day11 {
         val operation: (Long) -> Long,
         val divisor: Long,
         val trueTarget: Int,
-        val falseTarget: Int,
+        val falseTarget: Int
     ) {
         fun targetFor(value: Long): Int {
             return if (value.mod(divisor) == 0L) trueTarget else falseTarget

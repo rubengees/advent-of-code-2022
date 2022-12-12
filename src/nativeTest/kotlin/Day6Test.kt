@@ -9,7 +9,7 @@ class Day6Test {
         "bvwbjplbgvbhsrlpgdmjqwftvncz" to "5",
         "nppdvjthqldpwncqszvftbrmjlhg" to "6",
         "nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg" to "10",
-        "zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw" to "11",
+        "zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw" to "11"
     )
 
     private val examplesPart2 = mapOf(
@@ -17,7 +17,7 @@ class Day6Test {
         "bvwbjplbgvbhsrlpgdmjqwftvncz" to "23",
         "nppdvjthqldpwncqszvftbrmjlhg" to "23",
         "nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg" to "29",
-        "zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw" to "26",
+        "zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw" to "26"
     )
 
     @Test
