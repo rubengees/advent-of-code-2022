@@ -1,4 +1,4 @@
-class Day4 {
+class Day4 : Day {
     private fun parseLine(line: String): Pair<IntRange, IntRange> {
         val ranges = line.split(",")
             .map { range -> range.split("-").map { it.toInt() } }
@@ -7,14 +7,14 @@ class Day4 {
         return ranges[0] to ranges[1]
     }
 
-    fun part1(input: String): String {
+    override suspend fun part1(input: String): String {
         return input.lines()
             .map { parseLine(it) }
             .count { (a, b) -> a.intersect(b).size in listOf(a.toList().size, b.toList().size) }
             .toString()
     }
 
-    fun part2(input: String): String {
+    override suspend fun part2(input: String): String {
         return input.lines()
             .map { parseLine(it) }
             .count { (a, b) -> a.intersect(b).isNotEmpty() }

@@ -1,4 +1,4 @@
-class Day8 {
+class Day8 : Day {
     private class Matrix(size: Int) {
         private val data: Array<Array<Int>> = (0 until size).map { arrayOfZeros(size) }.toTypedArray()
 
@@ -62,13 +62,13 @@ class Day8 {
         return result
     }
 
-    fun part1(input: String): String {
+    override suspend fun part1(input: String): String {
         val matrix = parse(input)
 
         return matrix.positions().count { (x, y) -> matrix.isVisible(x, y) }.toString()
     }
 
-    fun part2(input: String): String {
+    override suspend fun part2(input: String): String {
         val matrix = parse(input)
 
         return matrix.positions().maxOf { (x, y) -> matrix.scenicScore(x, y) }.toString()

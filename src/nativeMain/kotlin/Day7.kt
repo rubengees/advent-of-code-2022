@@ -1,4 +1,4 @@
-class Day7 {
+class Day7 : Day {
     private data class File(val name: String, val size: Int)
 
     private data class Dir(
@@ -65,11 +65,11 @@ class Day7 {
         return root
     }
 
-    fun part1(input: String): String {
+    override suspend fun part1(input: String): String {
         return parse(input).sequence().filter { it.size <= 100_000 }.sumOf { it.size }.toString()
     }
 
-    fun part2(input: String): String {
+    override suspend fun part2(input: String): String {
         val fileSystem = parse(input)
 
         val usedSpace = fileSystem.size

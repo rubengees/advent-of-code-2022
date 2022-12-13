@@ -1,4 +1,4 @@
-class Day5 {
+class Day5 : Day {
     private data class Instruction(val times: Int, val from: Int, val to: Int)
 
     private fun parseInput(input: String): Pair<MutableList<ArrayDeque<Char>>, List<Instruction>> {
@@ -33,7 +33,7 @@ class Day5 {
         return stacks to instructions
     }
 
-    fun part1(input: String): String {
+    override suspend fun part1(input: String): String {
         val (stacks, instructions) = parseInput(input)
 
         for (instruction in instructions) {
@@ -45,7 +45,7 @@ class Day5 {
         return stacks.map { it.last() }.joinToString("")
     }
 
-    fun part2(input: String): String {
+    override suspend fun part2(input: String): String {
         val (stacks, instructions) = parseInput(input)
 
         for (instruction in instructions) {

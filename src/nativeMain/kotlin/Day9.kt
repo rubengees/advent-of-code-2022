@@ -1,6 +1,6 @@
 import kotlin.math.abs
 
-class Day9 {
+class Day9 : Day {
     private data class Point(val x: Int, val y: Int) {
         fun distanceTo(other: Point) = Distance(this.x - other.x, this.y - other.y)
 
@@ -29,7 +29,7 @@ class Day9 {
         }
     }
 
-    fun part1(input: String): String {
+    override suspend fun part1(input: String): String {
         val visited = mutableSetOf(Point(0, 0))
 
         var head = Point(x = 0, y = 0)
@@ -50,7 +50,7 @@ class Day9 {
         return visited.size.toString()
     }
 
-    fun part2(input: String): String {
+    override suspend fun part2(input: String): String {
         val visited = mutableSetOf(Point(x = 0, y = 0))
 
         var head = Point(x = 0, y = 0)

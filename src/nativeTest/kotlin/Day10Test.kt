@@ -1,3 +1,4 @@
+import kotlinx.coroutines.runBlocking
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -172,22 +173,22 @@ class Day10Test {
     """.trimIndent()
 
     @Test
-    fun part1Example() {
+    fun part1Example() = runBlocking {
         assertEquals("13140", day.part1(example))
     }
 
     @Test
-    fun part1Input() {
+    fun part1Input() = runBlocking {
         assertEquals("14420", day.part1(readInputFile(10)))
     }
 
     @Test
-    fun part2Example() {
+    fun part2Example() = runBlocking {
         assertEquals(exampleExpected, day.part2(example))
     }
 
     @Test
-    fun part2Input() {
+    fun part2Input() = runBlocking {
         assertEquals(inputExpected, day.part2(readInputFile(10)))
     }
 }

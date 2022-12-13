@@ -1,9 +1,9 @@
-class Day{day} {
-    fun part1(input: String): String {
+class Day{day}: Day {
+    override suspend fun part1(input: String): String {
         return ""
     }
 
-    fun part2(input: String): String {
+    override suspend fun part2(input: String): String {
         return ""
     }
 }

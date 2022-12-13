@@ -2,7 +2,7 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
 
-class Day12 {
+class Day12 : Day {
     private companion object {
         private const val START = 'S'
         private const val END = 'E'
@@ -97,7 +97,7 @@ class Day12 {
         map { async { f(it) } }.awaitAll()
     }
 
-    fun part1(input: String): String {
+    override suspend fun part1(input: String): String {
         val matrix = parse(input)
         val heuristic = { a: Point, b: Point -> matrix.height(b) - matrix.height(a) }
         val shortestPath = aStar(matrix, heuristic) ?: error("No path found")
@@ -105,7 +105,7 @@ class Day12 {
         return (shortestPath.count() - 1).toString()
     }
 
-    suspend fun part2(input: String): String {
+    override suspend fun part2(input: String): String {
         val matrix = parse(input)
         val heuristic = { a: Point, b: Point -> matrix.height(b) - matrix.height(a) }
 

@@ -1,5 +1,5 @@
-class Day1 {
-    fun part1(input: String): String {
+class Day1 : Day {
+    override suspend fun part1(input: String): String {
         var current = 0
         var max = 0
 
@@ -18,7 +18,7 @@ class Day1 {
         return max.toString()
     }
 
-    fun part2(input: String): String {
+    override suspend fun part2(input: String): String {
         val calories = input.lines().fold(mutableListOf(0)) { acc: List<Int>, next: String ->
             if (next.isEmpty()) {
                 acc + 0

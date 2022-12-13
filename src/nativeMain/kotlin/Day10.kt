@@ -1,4 +1,4 @@
-class Day10 {
+class Day10 : Day {
     private fun simulate(instructions: List<String>): Sequence<Int> {
         return sequence {
             var register = 1
@@ -21,28 +21,25 @@ class Day10 {
         }
     }
 
-    fun part1(input: String): String {
+    override suspend fun part1(input: String): String {
         val simulated = simulate(input.lines()).toList()
 
         return listOf(20, 60, 100, 140, 180, 220).sumOf { simulated[it - 1] * it }.toString()
     }
 
-    fun part2(input: String): String {
-        return simulate(input.lines())
-            .take(240)
-            .mapIndexed { cycle: Int, register: Int ->
-                val position = cycle % 40
+    override suspend fun part2(input: String): String {
+        return simulate(input.lines()).take(240).mapIndexed { cycle: Int, register: Int ->
+            val position = cycle % 40
 
-                buildString {
-                    if (cycle > 0 && position == 0) append("\n")
+            buildString {
+                if (cycle > 0 && position == 0) append("\n")
 
-                    if (position in register - 1..register + 1) {
-                        append("#")
-                    } else {
-                        append(".")
-                    }
+                if (position in register - 1..register + 1) {
+                    append("#")
+                } else {
+                    append(".")
                 }
             }
-            .joinToString(separator = "")
+        }.joinToString(separator = "")
     }
 }

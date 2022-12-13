@@ -1,4 +1,4 @@
-class Day11 {
+class Day11 : Day {
     private data class Monkey(
         val items: List<Long>,
         val operation: (Long) -> Long,
@@ -61,13 +61,13 @@ class Day11 {
         return inspections.values.toList()
     }
 
-    fun part1(input: String): String {
+    override suspend fun part1(input: String): String {
         val result = simulate(parse(input), rounds = 20) { it / 3 }
 
         return result.sortedDescending().take(2).reduce { acc, curr -> acc * curr }.toString()
     }
 
-    fun part2(input: String): String {
+    override suspend fun part2(input: String): String {
         val monkeys = parse(input)
         val safeReliefModulo = monkeys.fold(1L) { acc, curr -> acc * curr.divisor }
         val result = simulate(parse(input), rounds = 10_000) { it.mod(safeReliefModulo) }

@@ -1,3 +1,4 @@
+import kotlinx.coroutines.runBlocking
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -21,26 +22,26 @@ class Day6Test {
     )
 
     @Test
-    fun part1Example() {
+    fun part1Example() = runBlocking {
         for ((input, expectedOutput) in examplesPart1) {
             assertEquals(expectedOutput, day.part1(input))
         }
     }
 
     @Test
-    fun part1Input() {
+    fun part1Input() = runBlocking {
         assertEquals("1965", day.part1(readInputFile(6)))
     }
 
     @Test
-    fun part2Example() {
+    fun part2Example() = runBlocking {
         for ((input, expectedOutput) in examplesPart2) {
             assertEquals(expectedOutput, day.part2(input))
         }
     }
 
     @Test
-    fun part2Input() {
+    fun part2Input() = runBlocking {
         assertEquals("2773", day.part2(readInputFile(6)))
     }
 }

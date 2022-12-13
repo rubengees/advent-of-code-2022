@@ -1,4 +1,4 @@
-class Day3 {
+class Day3 : Day {
     private fun Char.priority(): Int {
         return when (this) {
             in ('a'..'z') -> code - 'a'.code + 1
@@ -11,7 +11,7 @@ class Day3 {
         return a.find { b.contains(it) }
     }
 
-    fun part1(input: String): String {
+    override suspend fun part1(input: String): String {
         return input.lines()
             .map { it.toCharArray().toList() }
             .mapNotNull { findDuplicate(it.subList(0, it.size / 2), it.subList(it.size / 2, it.size)) }
@@ -23,7 +23,7 @@ class Day3 {
         return a.find { item -> b.all { it.contains(item) } }
     }
 
-    fun part2(input: String): String {
+    override suspend fun part2(input: String): String {
         return input.lines()
             .map { it.toCharArray().toList() }
             .chunked(3)

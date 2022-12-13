@@ -1,4 +1,4 @@
-class Day2 {
+class Day2 : Day {
     private val winTable = mapOf(1 to 3, 2 to 1, 3 to 2)
 
     private fun calculateScorePart1(left: Char, right: Char): Int {
@@ -12,7 +12,7 @@ class Day2 {
         }
     }
 
-    fun part1(input: String): String {
+    override suspend fun part1(input: String): String {
         return input.lines()
             .sumOf {
                 val chars = it.split(" ").map { part -> part.first() }
@@ -35,7 +35,7 @@ class Day2 {
         }
     }
 
-    fun part2(input: String): String {
+    override suspend fun part2(input: String): String {
         return input.lines()
             .sumOf {
                 val chars = it.split(" ").map { part -> part.first() }
