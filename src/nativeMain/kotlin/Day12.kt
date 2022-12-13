@@ -1,5 +1,3 @@
-import kotlin.math.abs
-
 class Day12 : Day {
     private companion object {
         private const val START = 'S'
