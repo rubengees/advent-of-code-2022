@@ -15,18 +15,24 @@ fun main() {
         val input = readInputFile(day)
 
         val (resultPart1, durationPart1) = runAndMeasure { impl.part1(input) }
-        println("Day $day part 1 (${durationPart1.format()})")
-        println(resultPart1)
+
+        if (resultPart1.isNotEmpty()) {
+            overallDuration += durationPart1
+            solved += 1
+
+            println("Day $day part 1 (${durationPart1.format()})")
+            println(resultPart1)
+        }
 
         val (resultPart2, durationPart2) = runAndMeasure { impl.part2(input) }
 
         if (resultPart2.isNotEmpty()) {
+            overallDuration += durationPart2
+            solved += 1
+
             println("Day $day part 2 (${durationPart2.format()})")
             println(resultPart2)
         }
-
-        overallDuration = overallDuration + durationPart1 + durationPart2
-        solved += if (resultPart2.isNotEmpty()) 2 else 1
     }
 
     println()
