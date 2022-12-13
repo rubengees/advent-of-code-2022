@@ -7,7 +7,7 @@ class Day12 : Day {
     private data class Point(val x: Int, val y: Int)
 
     private class Matrix(private val data: List<List<Char>>) {
-        val points get() = data.indices.flatMap { y -> data[y].indices.map { x -> Point(x, y) } }
+        private val points get() = data.indices.flatMap { y -> data[y].indices.map { x -> Point(x, y) } }
 
         val start = points.filter { get(it) == START }
         val end = points.find { get(it) == END } ?: error("Missing end")
