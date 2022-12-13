@@ -1,7 +1,3 @@
-import kotlinx.coroutines.async
-import kotlinx.coroutines.awaitAll
-import kotlinx.coroutines.coroutineScope
-
 class Day12 : Day {
     private companion object {
         private const val START = 'S'
@@ -13,7 +9,7 @@ class Day12 : Day {
     private class Matrix(private val data: List<List<Char>>) {
         val points get() = data.indices.flatMap { y -> data[y].indices.map { x -> Point(x, y) } }
 
-        val start = points.find { get(it) == START } ?: error("Missing start")
+        val start = points.filter { get(it) == START }
         val end = points.find { get(it) == END } ?: error("Missing end")
 
         operator fun get(point: Point) = data[point.y][point.x]
@@ -34,13 +30,8 @@ class Day12 : Day {
                 .filter { height(point) >= height(it) - 1 }
         }
 
-        fun withStartAt(point: Point): Matrix {
-            val mutableData = data.map { it.toMutableList() }.toMutableList()
-
-            mutableData[start.y][start.x] = 'a'
-            mutableData[point.y][point.x] = 'S'
-
-            return Matrix(mutableData)
+        fun withAAsStart(): Matrix {
+            return Matrix(data.map { lines -> lines.map { char -> if (char == 'a') START else char } })
         }
     }
 
@@ -53,9 +44,9 @@ class Day12 : Day {
     }
 
     private fun aStar(matrix: Matrix, h: (a: Point, b: Point) -> Int): List<Point>? {
-        val openSet = mutableSetOf(matrix.start)
+        val openSet = matrix.start.toMutableSet()
         val cameFrom = mutableMapOf<Point, Point>()
-        val gScore = mutableMapOf(matrix.start to 0)
+        val gScore = matrix.start.associateWith { 0 }.toMutableMap()
 
         fun reconstructPath(): List<Point> {
             val result = mutableListOf(matrix.end)
@@ -93,10 +84,6 @@ class Day12 : Day {
         return null
     }
 
-    private suspend fun <A, B> Iterable<A>.pmap(f: suspend (A) -> B) = coroutineScope {
-        map { async { f(it) } }.awaitAll()
-    }
-
     override suspend fun part1(input: String): String {
         val matrix = parse(input)
         val heuristic = { a: Point, b: Point -> matrix.height(b) - matrix.height(a) }
@@ -108,12 +95,7 @@ class Day12 : Day {
     override suspend fun part2(input: String): String {
         val matrix = parse(input)
         val heuristic = { a: Point, b: Point -> matrix.height(b) - matrix.height(a) }
-
-        val shortestPath = matrix.points
-            .filter { matrix.height(it) == 0 }
-            .pmap { aStar(matrix.withStartAt(it), heuristic) }
-            .filterNotNull()
-            .minBy { it.count() }
+        val shortestPath = aStar(matrix.withAAsStart(), heuristic) ?: error("No path found")
 
         return (shortestPath.count() - 1).toString()
     }
