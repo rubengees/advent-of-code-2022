@@ -1,3 +1,5 @@
+import kotlin.math.abs
+
 class Day12 : Day {
     private companion object {
         private const val START = 'S'
@@ -35,6 +37,22 @@ class Day12 : Day {
         }
     }
 
+    private class PriorityQueue<T>(private val comparator: Comparator<T>, data: Iterable<T> = emptyList()) {
+        private val data = data.sortedWith(comparator).toMutableList()
+
+        fun enqueue(item: T) {
+            var index = data.binarySearch(item, comparator)
+            if (index < 0) index = -index - 1
+            data.add(index, item)
+        }
+
+        fun dequeue(): T? {
+            return data.removeFirst()
+        }
+
+        fun isNotEmpty() = data.isNotEmpty()
+    }
+
     private fun parse(input: String): Matrix {
         val data = input.lines().map { line ->
             line.toCharArray().toList()
@@ -44,7 +62,7 @@ class Day12 : Day {
     }
 
     private fun aStar(matrix: Matrix, h: (a: Point, b: Point) -> Int): List<Point>? {
-        val openSet = matrix.start.toMutableSet()
+        val openSet = PriorityQueue(compareBy { matrix[it] + h(it, matrix.end) }, matrix.start)
         val cameFrom = mutableMapOf<Point, Point>()
         val gScore = matrix.start.associateWith { 0 }.toMutableMap()
 
@@ -61,13 +79,11 @@ class Day12 : Day {
         }
 
         while (openSet.isNotEmpty()) {
-            val current = openSet.minBy { point -> matrix[point] + h(point, matrix.end) }
+            val current = openSet.dequeue() ?: error("openSet is empty")
 
             if (current == matrix.end) {
                 return reconstructPath()
             }
-
-            openSet.remove(current)
 
             for (neighbour in matrix.neighbours(current)) {
                 val score = gScore.getValue(current) + 1
@@ -76,7 +92,7 @@ class Day12 : Day {
                     cameFrom[neighbour] = current
                     gScore[neighbour] = score
 
-                    openSet.add(neighbour)
+                    openSet.enqueue(neighbour)
                 }
             }
         }
@@ -86,7 +102,7 @@ class Day12 : Day {
 
     override suspend fun part1(input: String): String {
         val matrix = parse(input)
-        val heuristic = { a: Point, b: Point -> matrix.height(b) - matrix.height(a) }
+        val heuristic = { _: Point, _: Point -> 0 }
         val shortestPath = aStar(matrix, heuristic) ?: error("No path found")
 
         return (shortestPath.count() - 1).toString()
@@ -94,7 +110,7 @@ class Day12 : Day {
 
     override suspend fun part2(input: String): String {
         val matrix = parse(input)
-        val heuristic = { a: Point, b: Point -> matrix.height(b) - matrix.height(a) }
+        val heuristic = { _: Point, _: Point -> 0 }
         val shortestPath = aStar(matrix.withAAsStart(), heuristic) ?: error("No path found")
 
         return (shortestPath.count() - 1).toString()
