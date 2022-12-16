@@ -1,3 +1,7 @@
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.runBlocking
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
@@ -55,9 +59,9 @@ class Day15 : Day {
         val ranges = sensors.map { it.blockedPositionsAt(row) }.filter { it.size >= 1 }
 
         return ranges.fold(emptyList()) { acc, range ->
-            acc + (acc.fold(listOf(range)) { innerAcc, intRange ->
+            acc + acc.fold(listOf(range)) { innerAcc, intRange ->
                 innerAcc.flatMap { it.fastSubtract(intRange) }
-            })
+            }
         }
     }
 
@@ -79,13 +83,24 @@ class Day15 : Day {
         return (blockedPositionsAtRow.sumOf { it.size } - beaconsAtRow.size).toString()
     }
 
+    private suspend fun <A, B> Iterable<A>.pmap(f: suspend (A) -> B): List<B> = coroutineScope {
+        map { async { f(it) } }.awaitAll()
+    }
+
     override suspend fun part2(input: String): String {
         val sensors = parse(input)
         val yBound = if (sensors.maxOf { it.position.y } <= 100) 20 else 4_000_000
 
-        val result = (yBound downTo 0).asSequence()
-            .map { y -> findGap(blockedPositionsAtRow(sensors, y))?.let { gap -> Point(gap, y) } }
-            .find { it != null }
+        val result = coroutineScope {
+            (yBound downTo 0).asSequence()
+                .chunked(1_000)
+                .flatMap { chunk ->
+                    runBlocking(coroutineContext) {
+                        chunk.pmap { y -> findGap(blockedPositionsAtRow(sensors, y))?.let { gap -> Point(gap, y) } }
+                    }
+                }
+                .find { it != null }
+        }
 
         if (result == null) {
             error("No gap found")

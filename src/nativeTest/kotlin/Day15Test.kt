@@ -38,7 +38,7 @@ class Day15Test {
     }
 
     @Test
-    fun part2Input() = runBlocking {
+    fun part2Input() = runBlocking(workerDispatcher()) {
         assertEquals("13360899249595", day.part2(readInputFile(15)))
     }
 }
