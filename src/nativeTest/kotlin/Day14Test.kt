@@ -11,22 +11,22 @@ class Day14Test {
     """.trimIndent()
 
     @Test
-    fun part1Example() = runBlocking {
+    fun part1Example() = runBlocking(workerDispatcher()) {
         assertEquals("24", day.part1(example))
     }
 
     @Test
-    fun part1Input() = runBlocking {
+    fun part1Input() = runBlocking(workerDispatcher()) {
         assertEquals("858", day.part1(readInputFile(14)))
     }
 
     @Test
-    fun part2Example() = runBlocking {
+    fun part2Example() = runBlocking(workerDispatcher()) {
         assertEquals("93", day.part2(example))
     }
 
     @Test
-    fun part2Input() = runBlocking {
+    fun part2Input() = runBlocking(workerDispatcher()) {
         assertEquals("26845", day.part2(readInputFile(14)))
     }
 }

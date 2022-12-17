@@ -22,26 +22,26 @@ class Day6Test {
     )
 
     @Test
-    fun part1Example() = runBlocking {
+    fun part1Example() = runBlocking(workerDispatcher()) {
         for ((input, expectedOutput) in examplesPart1) {
             assertEquals(expectedOutput, day.part1(input))
         }
     }
 
     @Test
-    fun part1Input() = runBlocking {
+    fun part1Input() = runBlocking(workerDispatcher()) {
         assertEquals("1965", day.part1(readInputFile(6)))
     }
 
     @Test
-    fun part2Example() = runBlocking {
+    fun part2Example() = runBlocking(workerDispatcher()) {
         for ((input, expectedOutput) in examplesPart2) {
             assertEquals(expectedOutput, day.part2(input))
         }
     }
 
     @Test
-    fun part2Input() = runBlocking {
+    fun part2Input() = runBlocking(workerDispatcher()) {
         assertEquals("2773", day.part2(readInputFile(6)))
     }
 }
