@@ -60,9 +60,9 @@ class Day12 : Day {
     }
 
     private fun aStar(matrix: Matrix, h: (a: Point, b: Point) -> Int): List<Point>? {
-        val openSet = PriorityQueue(compareBy { matrix[it] + h(it, matrix.end) }, matrix.start)
         val cameFrom = mutableMapOf<Point, Point>()
         val gScore = matrix.start.associateWith { 0 }.toMutableMap()
+        val openSet = PriorityQueue(compareBy { gScore.getValue(it) + h(it, matrix.end) }, matrix.start)
 
         fun reconstructPath(): List<Point> {
             val result = mutableListOf(matrix.end)
