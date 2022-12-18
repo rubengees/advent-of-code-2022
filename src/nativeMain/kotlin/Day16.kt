@@ -102,7 +102,7 @@ class Day16 : Day {
         }
     }
 
-    private suspend fun simulate(
+    private fun simulate(
         valves: Map<String, Valve>,
         current: String,
         open: Set<String>,
@@ -116,11 +116,9 @@ class Day16 : Day {
 
         val ventOpenCost = if (currentValve.flow >= 1) 1 else 0
 
-        results += coroutineScope {
-            currentValve.targets
-                .filter { !open.contains(it.target) }
-                .pmap { simulate(valves, it.target, open + current, minutes - it.cost - ventOpenCost) }
-        }
+        results += currentValve.targets
+            .filter { !open.contains(it.target) }
+            .map { simulate(valves, it.target, open + current, minutes - it.cost - ventOpenCost) }
 
         return results.maxOfOrNull { it + flow } ?: flow
     }
